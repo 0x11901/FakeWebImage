@@ -31,6 +31,7 @@
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         [self.view addSubview:imageView];
         imageView.center = self.view.center;
+        [self.view layoutIfNeeded];
     }];
     [self.queue addOperation:op];
 }
