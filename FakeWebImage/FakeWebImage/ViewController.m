@@ -7,14 +7,14 @@
 //
 
 #import "ViewController.h"
-#import "DownloaderOperation.h"
+#import "DownloaderOperationManger.h"
 #import "AFNetworking.h"
 #import "YYModel.h"
 #import "URLModel.h"
 
 @interface ViewController ()
-@property(nonatomic,strong) NSOperationQueue* queue;//a global concurrent queue
 @property(nonatomic,copy) NSArray<URLModel *>* URLInfos;//a global array to save models
+@property(weak,nonatomic) UIImageView* showImageView;//a global imageView to test download method
 @end
 
 @implementation ViewController
@@ -32,10 +32,7 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     char n = arc4random_uniform((int)_URLInfos.count);
     [self donwloadWithURLString:_URLInfos[n].URLString successBlock:^(UIImage *image) {
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-        [self.view addSubview:imageView];
-        CGFloat newHeight = imageView.bounds.size.height * [UIScreen mainScreen].bounds.size.width / imageView.bounds.size.width;
-        imageView.frame = CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, newHeight);
+        self.showImageView.image = image;
         NSLog(@"download done...");
         [self.view layoutIfNeeded];
     }];
@@ -46,10 +43,7 @@
  the method to dowoload image from URL
  */
 - (void)donwloadWithURLString: (NSString*)URLString successBlock: (void(^)(UIImage *image))successBlock{
-    DownloaderOperation *op = [DownloaderOperation new];
-    op.urlString = URLString;
-    op.sucessBlock= successBlock;
-    [self.queue addOperation:op];
+    [[DownloaderOperationManger sharedManger] manger_donwloadImageWithURL:URLString successBlock:successBlock];
 }
 
 /**
@@ -66,15 +60,20 @@
 }
 
 /**
- lazy load the global concurrent queue
+ lazy load the global test imageView
 
- @return global concurrent queue
+ @return global test imageView
  */
-- (NSOperationQueue *)queue{
-    if (!_queue) {
-        _queue = [NSOperationQueue new];
+- (UIImageView *)showImageView{
+    if (!_showImageView) {
+        UIImageView *imageView = [UIImageView new];
+        [self.view addSubview:imageView];
+//        CGFloat newHeight = imageView.bounds.size.height * [UIScreen mainScreen].bounds.size.width / imageView.bounds.size.width;
+        imageView.frame = CGRectMake(0, 0, 60, 60);
+        imageView.center = self.view.center;
+        _showImageView = imageView;
     }
-    return _queue;
+    return _showImageView;
 }
 
 - (void)didReceiveMemoryWarning {

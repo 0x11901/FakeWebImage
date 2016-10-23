@@ -17,6 +17,7 @@
 		F89EBBE51DBCD9FC00C69208 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F89EBBBB1DBCD9FC00C69208 /* NSObject+YYModel.m */; };
 		F89EBBE61DBCD9FC00C69208 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F89EBBBD1DBCD9FC00C69208 /* YYClassInfo.m */; };
 		F89EBBE91DBCDBEC00C69208 /* URLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F89EBBE81DBCDBEC00C69208 /* URLModel.m */; };
+		F89EBBEC1DBCEF9600C69208 /* DownloaderOperationManger.m in Sources */ = {isa = PBXBuildFile; fileRef = F89EBBEB1DBCEF9600C69208 /* DownloaderOperationManger.m */; };
 		F8CCC0B01DBC630B003969DC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8CCC0AF1DBC630B003969DC /* main.m */; };
 		F8CCC0B31DBC630B003969DC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F8CCC0B21DBC630B003969DC /* AppDelegate.m */; };
 		F8CCC0B61DBC630B003969DC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8CCC0B51DBC630B003969DC /* ViewController.m */; };
@@ -47,6 +48,8 @@
 		F89EBBBE1DBCD9FC00C69208 /* YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
 		F89EBBE71DBCDBEC00C69208 /* URLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLModel.h; sourceTree = "<group>"; };
 		F89EBBE81DBCDBEC00C69208 /* URLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLModel.m; sourceTree = "<group>"; };
+		F89EBBEA1DBCEF9600C69208 /* DownloaderOperationManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloaderOperationManger.h; sourceTree = "<group>"; };
+		F89EBBEB1DBCEF9600C69208 /* DownloaderOperationManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloaderOperationManger.m; sourceTree = "<group>"; };
 		F8CCC0AB1DBC630B003969DC /* FakeWebImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FakeWebImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8CCC0AF1DBC630B003969DC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F8CCC0B11DBC630B003969DC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -74,6 +77,8 @@
 			children = (
 				F808D3DE1DBC6955004C5797 /* DownloaderOperation.h */,
 				F808D3DF1DBC6955004C5797 /* DownloaderOperation.m */,
+				F89EBBEA1DBCEF9600C69208 /* DownloaderOperationManger.h */,
+				F89EBBEB1DBCEF9600C69208 /* DownloaderOperationManger.m */,
 			);
 			path = FakeWebImage;
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 				F89EBBE51DBCD9FC00C69208 /* NSObject+YYModel.m in Sources */,
 				F89EBBC41DBCD9FC00C69208 /* AFURLSessionManager.m in Sources */,
 				F89EBBE91DBCDBEC00C69208 /* URLModel.m in Sources */,
+				F89EBBEC1DBCEF9600C69208 /* DownloaderOperationManger.m in Sources */,
 				F8CCC0B31DBC630B003969DC /* AppDelegate.m in Sources */,
 				F89EBBE61DBCD9FC00C69208 /* YYClassInfo.m in Sources */,
 				F89EBBC01DBCD9FC00C69208 /* AFNetworkReachabilityManager.m in Sources */,
