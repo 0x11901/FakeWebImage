@@ -7,9 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "DownloaderOperation.h"
 
 @interface ViewController ()
-
+@property(nonatomic,strong) NSOperationQueue* queue;//a global concurrent queue
 @end
 
 @implementation ViewController
@@ -17,8 +18,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    [self donwloadURL];
 }
 
+/**
+ the method to dowoload image from URL
+ */
+- (void)donwloadURL {
+    DownloaderOperation *op = [DownloaderOperation new];
+    op.urlString = @"<#imageURL#>";
+    [self.queue addOperation:op];
+}
+
+/**
+ lazy load the global concurrent queue
+
+ @return global concurrent queue
+ */
+- (NSOperationQueue *)queue{
+    if (!_queue) {
+        _queue = [NSOperationQueue new];
+    }
+    return _queue;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
