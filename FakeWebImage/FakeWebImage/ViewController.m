@@ -36,13 +36,13 @@
         NSLog(@"download done...");
         [self.view layoutIfNeeded];
     }];
-    NSLog(@"start downloading");
 }
 
 /**
  the method to dowoload image from URL
  */
 - (void)donwloadWithURLString: (NSString*)URLString successBlock: (void(^)(UIImage *image))successBlock{
+    NSLog(@"start downloading %@",[URLString lastPathComponent]);
     [[DownloaderOperationManger sharedManger] manger_donwloadImageWithURL:URLString successBlock:successBlock];
 }
 

@@ -26,16 +26,22 @@
  override this method to concurrent download image
  */
 - (void)main{
+    [NSThread sleepForTimeInterval:5];
+    
     NSAssert(self.urlString != nil, @"urlString can't be nil");
     NSURL* url = [NSURL URLWithString:self.urlString];
+    if (self.cancelled)
+        return;
     NSData* data = [NSData dataWithContentsOfURL:url];
+    if (self.cancelled)
+        return;
     UIImage* image = [UIImage imageWithData:data];
-    NSLog(@"%@",[NSThread currentThread]);
+    if (self.cancelled)
+        return;
     
     NSAssert(self.sucessBlock != nil, @"sucessBlock can't be nil");
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         _sucessBlock(image);
-        NSLog(@"%@",[NSThread currentThread]);
     }];
 }
 
