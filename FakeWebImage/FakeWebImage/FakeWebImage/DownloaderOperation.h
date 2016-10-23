@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DownloaderOperation : NSOperation
-@property(nonatomic,copy) NSString* urlString;
+@property(nonatomic,copy) NSString* urlString;//the imageURL string
+@property(nonatomic,copy) void(^sucessBlock)(UIImage *);//call-bake image by block;
 @end

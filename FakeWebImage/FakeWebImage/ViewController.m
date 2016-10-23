@@ -26,7 +26,12 @@
  */
 - (void)donwloadURL {
     DownloaderOperation *op = [DownloaderOperation new];
-    op.urlString = @"<#imageURL#>";
+    op.urlString = @"https://en.wikipedia.org/wiki/Lenna#/media/File:Lenna.png";
+    [op setSucessBlock:^(UIImage *image) {
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        [self.view addSubview:imageView];
+        imageView.center = self.view.center;
+    }];
     [self.queue addOperation:op];
 }
 
