@@ -8,7 +8,19 @@
 
 #import "DownloaderOperation.h"
 
+@interface DownloaderOperation ()
+@property(nonatomic,copy) NSString* urlString;//the imageURL string
+@property(nonatomic,copy) void(^sucessBlock)(UIImage *);//call-bake image by block;
+@end
+
 @implementation DownloaderOperation
+
++ (instancetype)donwloadImageWithURL:(NSString *)urlString successBlock:(void (^)(UIImage *))successBlock{
+    DownloaderOperation* op = [DownloaderOperation new];
+    op.urlString = urlString;
+    op.sucessBlock = successBlock;
+    return op;
+}
 
 /**
  override this method to concurrent download image

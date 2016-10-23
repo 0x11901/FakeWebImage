@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface DownloaderOperation : NSOperation
-@property(nonatomic,copy) NSString* urlString;//the imageURL string
-@property(nonatomic,copy) void(^sucessBlock)(UIImage *);//call-bake image by block;
+
+/**
+ quick way to use download an image
+
+ @param urlString          image's url string
+ @param successBlock block to call-back an image
+ */
++ (instancetype)donwloadImageWithURL:(NSString *)urlString successBlock: (void(^)(UIImage *image))successBlock;
+
 @end
