@@ -14,13 +14,13 @@
  override this method to concurrent download image
  */
 - (void)main{
-//    NSAssert(!self.urlString, @"sucessBlock can't be nil");
+    NSAssert(self.urlString != nil, @"urlString can't be nil");
     NSURL* url = [NSURL URLWithString:self.urlString];
-    NSData* date = [NSData dataWithContentsOfURL:url];
-    UIImage* image = [UIImage imageWithData:date];
+    NSData* data = [NSData dataWithContentsOfURL:url];
+    UIImage* image = [UIImage imageWithData:data];
     NSLog(@"%@",[NSThread currentThread]);
     
-//    NSAssert(!self.sucessBlock, @"sucessBlock can't be nil");
+    NSAssert(self.sucessBlock != nil, @"sucessBlock can't be nil");
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         _sucessBlock(image);
         NSLog(@"%@",[NSThread currentThread]);

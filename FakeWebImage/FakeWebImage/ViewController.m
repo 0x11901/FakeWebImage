@@ -18,7 +18,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.view.backgroundColor = [UIColor cyanColor];
+}
+
+
+/**
+ test project by this method
+ */
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [self donwloadURL];
+    NSLog(@"start downloading");
 }
 
 /**
@@ -26,11 +35,13 @@
  */
 - (void)donwloadURL {
     DownloaderOperation *op = [DownloaderOperation new];
-    op.urlString = @"https://en.wikipedia.org/wiki/Lenna#/media/File:Lenna.png";
+    op.urlString = @"http://p16.qhimg.com//dr//48_48_//t0125e8d438ae9d2fbb.png";
     [op setSucessBlock:^(UIImage *image) {
         UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
         [self.view addSubview:imageView];
-        imageView.center = self.view.center;
+        CGFloat newHeight = imageView.bounds.size.height * [UIScreen mainScreen].bounds.size.width / imageView.bounds.size.width;
+        imageView.frame = CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, newHeight);
+        NSLog(@"download done...");
         [self.view layoutIfNeeded];
     }];
     [self.queue addOperation:op];
