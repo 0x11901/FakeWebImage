@@ -32,7 +32,9 @@
     NSData* sanbox = [NSData dataWithContentsOfFile:path];
     if (sanbox) {
         NSLog(@"load image in sanbox");
-        _sucessBlock([UIImage imageWithData:sanbox]);
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            _sucessBlock([UIImage imageWithData:sanbox]);
+        }];
         return;
     }
     NSAssert(self.urlString != nil, @"urlString can't be nil");
