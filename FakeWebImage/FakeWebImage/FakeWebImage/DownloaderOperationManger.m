@@ -28,8 +28,14 @@
     if (self = [super init]) {
         _downloadingImages = [NSMutableDictionary dictionary];
         _memeryImages = [NSMutableDictionary dictionary];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeAllMemeryCaches) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
     }
     return self;
+}
+
+
+- (void)removeAllMemeryCaches {
+    [_memeryImages removeAllObjects];
 }
 
 /**
@@ -41,7 +47,7 @@
 - (void)manger_donwloadImageWithURL:(NSString *)urlString successBlock:(void (^)(UIImage *))successBlock{
     if (urlString != nil){
         if (_memeryImages[urlString]){
-            NSLog(@"load image in memery");
+            NSLog(@"load image in memory");
             successBlock(_memeryImages[urlString]);
             return;
         }else if (_downloadingImages.count > 0  && _lastOperation != nil) {
@@ -60,7 +66,7 @@
         successBlock(image);
         [_memeryImages setObject:image forKey:urlString];
         [_downloadingImages removeObjectForKey:urlString];
-        NSLog(@"remove the key for image(%@) whith alraedy downloaded(%zd)",[urlString lastPathComponent],_downloadingImages.count);
+        NSLog(@"remove the key for image(%@) which alraedy downloaded(%zd)",[urlString lastPathComponent],_downloadingImages.count);
     }];
     [self.queue addOperation:_lastOperation];
 }
