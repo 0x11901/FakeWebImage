@@ -26,8 +26,15 @@
  override this method to concurrent download image
  */
 - (void)main{
-    [NSThread sleepForTimeInterval:5];
-    
+    // get the sanbox address
+    NSString *caches = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject;
+    NSString *path = [caches stringByAppendingPathComponent:[self.urlString lastPathComponent]];
+    NSData* sanbox = [NSData dataWithContentsOfFile:path];
+    if (sanbox) {
+        NSLog(@"load image in sanbox");
+        _sucessBlock([UIImage imageWithData:sanbox]);
+        return;
+    }
     NSAssert(self.urlString != nil, @"urlString can't be nil");
     NSURL* url = [NSURL URLWithString:self.urlString];
     if (self.cancelled)
@@ -41,6 +48,10 @@
     
     NSAssert(self.sucessBlock != nil, @"sucessBlock can't be nil");
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if (data) {
+            [data writeToFile:path atomically:YES];
+            NSLog(@"write to sanbox");
+        }
         _sucessBlock(image);
     }];
 }

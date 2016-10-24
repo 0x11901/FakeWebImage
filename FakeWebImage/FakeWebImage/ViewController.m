@@ -31,6 +31,7 @@
  */
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     char n = arc4random_uniform((int)_URLInfos.count);
+    NSLog(@"start downloading %@",_URLInfos[n].name);
     [self donwloadWithURLString:_URLInfos[n].URLString successBlock:^(UIImage *image) {
         self.showImageView.image = image;
         NSLog(@"download done...");
@@ -42,7 +43,6 @@
  the method to dowoload image from URL
  */
 - (void)donwloadWithURLString: (NSString*)URLString successBlock: (void(^)(UIImage *image))successBlock{
-    NSLog(@"start downloading %@",[URLString lastPathComponent]);
     [[DownloaderOperationManger sharedManger] manger_donwloadImageWithURL:URLString successBlock:successBlock];
 }
 

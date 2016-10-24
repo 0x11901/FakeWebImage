@@ -12,7 +12,9 @@
 @interface DownloaderOperationManger ()
 @property(nonatomic,strong) NSOperationQueue* queue;//a global concurrent queue
 @property(nonatomic,strong) NSMutableDictionary* downloadingImages;//a global dictionary use for judge the image download if needly
-@property(strong,nonatomic) NSOperation* lastOperation;
+@property(strong,nonatomic) NSOperation* lastOperation;//a pointer to record last operation
+@property(nonatomic,copy) NSString* lastURLString;//a pointer to record last URL
+@property(nonatomic,strong) NSMutableDictionary* memeryImages;//a mutableArray for load images in memery
 @end
 
 @implementation DownloaderOperationManger
@@ -25,6 +27,7 @@
 - (instancetype)init{
     if (self = [super init]) {
         _downloadingImages = [NSMutableDictionary dictionary];
+        _memeryImages = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -37,17 +40,25 @@
  */
 - (void)manger_donwloadImageWithURL:(NSString *)urlString successBlock:(void (^)(UIImage *))successBlock{
     if (urlString != nil){
-        if (_downloadingImages.count > 0  && _lastOperation != nil) {
+        if (_memeryImages[urlString]){
+            NSLog(@"load image in memery");
+            successBlock(_memeryImages[urlString]);
+            return;
+        }else if (_downloadingImages.count > 0  && _lastOperation != nil) {
             NSLog(@"cancel last operation,download new image:%@",[urlString lastPathComponent]);
+            [_downloadingImages removeObjectForKey:_lastURLString];
             [_lastOperation cancel];
+            return;
         }
     }else{
         NSLog(@"urlString connot be nil,cancel this operation");
         return;
     }
     [_downloadingImages setObject:urlString forKey:urlString];
+    _lastURLString = urlString;
     _lastOperation = [DownloaderOperation donwloadImageWithURL:urlString successBlock:^(UIImage* image){
         successBlock(image);
+        [_memeryImages setObject:image forKey:urlString];
         [_downloadingImages removeObjectForKey:urlString];
         NSLog(@"remove the key for image(%@) whith alraedy downloaded(%zd)",[urlString lastPathComponent],_downloadingImages.count);
     }];
