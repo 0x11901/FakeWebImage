@@ -50,11 +50,11 @@
 - (void)manger_donwloadImageWithURL:(NSString *)urlString successBlock:(void (^)(UIImage *))successBlock{
     if (urlString != nil){
         if ([_memeryImages objectForKey:urlString]){
-            NSLog(@"load image in memory");
+//            NSLog(@"load image in memory");
             successBlock([_memeryImages objectForKey:urlString]);
             return;
         }else if (_downloadingImages.count > 0  && _lastOperation != nil) {
-            NSLog(@"cancel last operation,download new image:%@",[urlString lastPathComponent]);
+//            NSLog(@"cancel last operation,download new image:%@",[urlString lastPathComponent]);
             [_downloadingImages removeObjectForKey:_lastURLString];
             [_lastOperation cancel];
             return;
@@ -69,7 +69,7 @@
         successBlock(image);
         [_memeryImages setObject:image forKey:urlString];
         [_downloadingImages removeObjectForKey:urlString];
-        NSLog(@"remove the key for image(%@) which alraedy downloaded(%zd)",[urlString lastPathComponent],_downloadingImages.count);
+//        NSLog(@"remove the key for image(%@) which alraedy downloaded(%zd)",[urlString lastPathComponent],_downloadingImages.count);
     }];
     [self.queue addOperation:_lastOperation];
 }

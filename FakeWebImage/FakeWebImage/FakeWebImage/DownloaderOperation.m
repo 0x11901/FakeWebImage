@@ -32,7 +32,7 @@
     NSString *path = [caches stringByAppendingPathComponent:[self.urlString md5String]];
     NSData* sanbox = [NSData dataWithContentsOfFile:path];
     if (sanbox) {
-        NSLog(@"load image in sanbox");
+//        NSLog(@"load image in sanbox");
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             _sucessBlock([UIImage imageWithData:sanbox]);
         }];
@@ -53,7 +53,7 @@
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         if (data) {
             [data writeToFile:path atomically:YES];
-            NSLog(@"write to sanbox");
+//            NSLog(@"write to sanbox");
         }
         _sucessBlock(image);
     }];
