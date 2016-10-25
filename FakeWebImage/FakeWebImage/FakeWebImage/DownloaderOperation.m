@@ -7,6 +7,7 @@
 //
 
 #import "DownloaderOperation.h"
+#import "NSString+Hash.h"
 
 @interface DownloaderOperation ()
 @property(nonatomic,copy) NSString* urlString;//the imageURL string
@@ -28,7 +29,7 @@
 - (void)main{
     // get the sanbox address
     NSString *caches = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject;
-    NSString *path = [caches stringByAppendingPathComponent:[self.urlString lastPathComponent]];
+    NSString *path = [caches stringByAppendingPathComponent:[self.urlString md5String]];
     NSData* sanbox = [NSData dataWithContentsOfFile:path];
     if (sanbox) {
         NSLog(@"load image in sanbox");

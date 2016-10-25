@@ -14,7 +14,7 @@
 @property(nonatomic,strong) NSMutableDictionary* downloadingImages;//a global dictionary use for judge the image download if needly
 @property(strong,nonatomic) NSOperation* lastOperation;//a pointer to record last operation
 @property(nonatomic,copy) NSString* lastURLString;//a pointer to record last URL
-@property(nonatomic,strong) NSMutableDictionary* memeryImages;//a mutableArray for load images in memery
+@property(nonatomic,strong) NSCache* memeryImages;//a NSCache for load images in memery
 @end
 
 @implementation DownloaderOperationManger
@@ -27,16 +27,19 @@
 - (instancetype)init{
     if (self = [super init]) {
         _downloadingImages = [NSMutableDictionary dictionary];
-        _memeryImages = [NSMutableDictionary dictionary];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeAllMemeryCaches) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
+        _memeryImages = [NSCache new];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeAllMemeryCaches) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
     }
     return self;
 }
 
 
-- (void)removeAllMemeryCaches {
-    [_memeryImages removeAllObjects];
-}
+/**
+ NSCache no need to free memory
+ - (void)removeAllMemeryCaches {
+ [_memeryImages removeAllObjects];
+ }
+ */
 
 /**
  use the manger to mange the download queue
@@ -46,9 +49,9 @@
  */
 - (void)manger_donwloadImageWithURL:(NSString *)urlString successBlock:(void (^)(UIImage *))successBlock{
     if (urlString != nil){
-        if (_memeryImages[urlString]){
+        if ([_memeryImages objectForKey:urlString]){
             NSLog(@"load image in memory");
-            successBlock(_memeryImages[urlString]);
+            successBlock([_memeryImages objectForKey:urlString]);
             return;
         }else if (_downloadingImages.count > 0  && _lastOperation != nil) {
             NSLog(@"cancel last operation,download new image:%@",[urlString lastPathComponent]);
