@@ -6,8 +6,8 @@
 //  Copyright © 2016年 王靖凯. All rights reserved.
 //
 
-#import "UIImageView+webCaches.h"
 #import "DownloaderOperationManger.h"
+#import "UIImageView+webCaches.h"
 
 @implementation UIImageView (webCaches)
 
@@ -16,10 +16,12 @@
 
  @param URLString image's URL
  */
-- (void)fake_setImageWithURLString:(NSString *)URLString{
-    [[DownloaderOperationManger sharedManger] manger_donwloadImageWithURL:URLString successBlock:^(UIImage *image){
-        self.image = image;
-    }];
+- (void)fake_setImageWithURLString:(NSString *)URLString {
+  [[DownloaderOperationManger sharedManger]
+      manger_donwloadImageWithURL:URLString
+                     successBlock:^(UIImage *image) {
+                       self.image = image;
+                     }];
 }
 
 /*
@@ -29,13 +31,15 @@
         [[DownloaderOperationManger sharedManger] cancelDownloadOperation];
     }
     self.lastURlString = URLString;
-    [[DownloaderOperationManger sharedManger] manger_donwloadImageWithURL:URLString successBlock:^(UIImage *image){
-        self.image = image;
+    [[DownloaderOperationManger sharedManger]
+manger_donwloadImageWithURL:URLString successBlock:^(UIImage *image){ self.image
+= image;
     }];
 }
 
 - (void)setLastURlString:(NSString *)lastURlString{
-    objc_setAssociatedObject(self, "key", lastURlString, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    objc_setAssociatedObject(self, "key", lastURlString,
+OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
 - (NSString *)lastURlString{

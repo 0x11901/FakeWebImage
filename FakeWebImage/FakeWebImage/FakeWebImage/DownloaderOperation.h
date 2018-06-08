@@ -16,6 +16,7 @@
  @param urlString          image's url string
  @param successBlock block to call-back an image
  */
-+ (instancetype)donwloadImageWithURL:(NSString *)urlString successBlock: (void(^)(UIImage *image))successBlock;
++ (instancetype)donwloadImageWithURL:(NSString *)urlString
+                        successBlock:(void (^)(UIImage *image))successBlock;
 
 @end

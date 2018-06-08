@@ -10,5 +10,6 @@
 
 @interface DownloaderOperationManger : NSObject
 + (instancetype)sharedManger;
-- (void)manger_donwloadImageWithURL:(NSString *)urlString successBlock: (void(^)(UIImage *image))successBlock;
+- (void)manger_donwloadImageWithURL:(NSString *)urlString
+                       successBlock:(void (^)(UIImage *image))successBlock;
 @end

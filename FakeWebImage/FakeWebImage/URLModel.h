@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface URLModel : NSObject
-@property(nonatomic,copy) NSString* URLString;
+@property(nonatomic, copy) NSString *URLString;
 @end

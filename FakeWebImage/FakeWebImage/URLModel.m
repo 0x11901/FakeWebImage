@@ -9,16 +9,16 @@
 #import "URLModel.h"
 
 @interface URLModel ()
-@property(nonatomic,copy) NSString* icon;
+@property(nonatomic, copy) NSString *icon;
 @end
 
 @implementation URLModel
-- (void)setIcon:(NSString *)icon{
-    _URLString = icon;
-    _icon = icon;
+- (void)setIcon:(NSString *)icon {
+  _URLString = icon;
+  _icon = icon;
 }
 
-- (NSString *)description{
-    return self.URLString.description;
+- (NSString *)description {
+  return self.URLString.description;
 }
 @end
