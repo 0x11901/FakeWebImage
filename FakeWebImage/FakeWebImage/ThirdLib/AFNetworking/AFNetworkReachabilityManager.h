@@ -26,10 +26,10 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 
 typedef NS_ENUM(NSInteger, AFNetworkReachabilityStatus) {
-  AFNetworkReachabilityStatusUnknown = -1,
-  AFNetworkReachabilityStatusNotReachable = 0,
-  AFNetworkReachabilityStatusReachableViaWWAN = 1,
-  AFNetworkReachabilityStatusReachableViaWiFi = 2,
+    AFNetworkReachabilityStatusUnknown          = -1,
+    AFNetworkReachabilityStatusNotReachable     = 0,
+    AFNetworkReachabilityStatusReachableViaWWAN = 1,
+    AFNetworkReachabilityStatusReachableViaWiFi = 2,
 };
 
 NS_ASSUME_NONNULL_BEGIN
@@ -55,8 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The current network reachability status.
  */
-@property(readonly, nonatomic, assign)
-    AFNetworkReachabilityStatus networkReachabilityStatus;
+@property(readonly, nonatomic, assign) AFNetworkReachabilityStatus networkReachabilityStatus;
 
 /**
  Whether or not the network is currently reachable.
@@ -66,14 +65,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Whether or not the network is currently reachable via WWAN.
  */
-@property(readonly, nonatomic, assign, getter=isReachableViaWWAN)
-    BOOL reachableViaWWAN;
+@property(readonly, nonatomic, assign, getter=isReachableViaWWAN) BOOL reachableViaWWAN;
 
 /**
  Whether or not the network is currently reachable via WiFi.
  */
-@property(readonly, nonatomic, assign, getter=isReachableViaWiFi)
-    BOOL reachableViaWiFi;
+@property(readonly, nonatomic, assign, getter=isReachableViaWiFi) BOOL reachableViaWiFi;
 
 ///---------------------
 /// @name Initialization
@@ -123,8 +120,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return An initialized network reachability manager, actively monitoring the
  specified reachability.
  */
-- (instancetype)initWithReachability:(SCNetworkReachabilityRef)reachability
-    NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithReachability:(SCNetworkReachabilityRef)reachability NS_DESIGNATED_INITIALIZER;
 
 ///--------------------------------------------------
 /// @name Starting & Stopping Reachability Monitoring
@@ -163,8 +159,7 @@ NS_ASSUME_NONNULL_BEGIN
  argument which represents the various reachability states from the device to
  the `baseURL`.
  */
-- (void)setReachabilityStatusChangeBlock:
-    (nullable void (^)(AFNetworkReachabilityStatus status))block;
+- (void)setReachabilityStatusChangeBlock:(nullable void (^)(AFNetworkReachabilityStatus status))block;
 
 @end
 
@@ -228,8 +223,7 @@ NS_ASSUME_NONNULL_BEGIN
  project (`Prefix.pch`).
  */
 FOUNDATION_EXPORT NSString *const AFNetworkingReachabilityDidChangeNotification;
-FOUNDATION_EXPORT NSString
-    *const AFNetworkingReachabilityNotificationStatusItem;
+FOUNDATION_EXPORT NSString *const AFNetworkingReachabilityNotificationStatusItem;
 
 ///--------------------
 /// @name Functions
@@ -239,8 +233,7 @@ FOUNDATION_EXPORT NSString
  Returns a localized string representation of an `AFNetworkReachabilityStatus`
  value.
  */
-FOUNDATION_EXPORT NSString *
-AFStringFromNetworkReachabilityStatus(AFNetworkReachabilityStatus status);
+FOUNDATION_EXPORT NSString *AFStringFromNetworkReachabilityStatus(AFNetworkReachabilityStatus status);
 
 NS_ASSUME_NONNULL_END
 #endif

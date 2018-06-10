@@ -17,11 +17,10 @@
  @param URLString image's URL
  */
 - (void)fake_setImageWithURLString:(NSString *)URLString {
-  [[DownloaderOperationManger sharedManger]
-      manger_donwloadImageWithURL:URLString
-                     successBlock:^(UIImage *image) {
-                       self.image = image;
-                     }];
+    [[DownloaderOperationManger sharedManger] manger_donwloadImageWithURL:URLString
+                                                             successBlock:^(UIImage *image) {
+                                                                 self.image = image;
+                                                             }];
 }
 
 /*

@@ -8,17 +8,17 @@
 
 #import "URLModel.h"
 
-@interface URLModel ()
+@interface                           URLModel ()
 @property(nonatomic, copy) NSString *icon;
 @end
 
 @implementation URLModel
 - (void)setIcon:(NSString *)icon {
-  _URLString = icon;
-  _icon = icon;
+    _URLString = icon;
+    _icon      = icon;
 }
 
 - (NSString *)description {
-  return self.URLString.description;
+    return self.URLString.description;
 }
 @end

@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface URLModel : NSObject
+@interface                           URLModel : NSObject
 @property(nonatomic, copy) NSString *URLString;
 @end

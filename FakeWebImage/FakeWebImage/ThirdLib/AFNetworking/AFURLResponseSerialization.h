@@ -49,8 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable id)responseObjectForResponse:(nullable NSURLResponse *)response
                                     data:(nullable NSData *)data
-                                   error:(NSError *_Nullable __autoreleasing *)
-                                             error NS_SWIFT_NOTHROW;
+                                   error:(NSError *_Nullable __autoreleasing *)error NS_SWIFT_NOTHROW;
 
 @end
 
@@ -156,8 +155,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param readingOptions The specified JSON reading options.
  */
-+ (instancetype)serializerWithReadingOptions:
-    (NSJSONReadingOptions)readingOptions;
++ (instancetype)serializerWithReadingOptions:(NSJSONReadingOptions)readingOptions;
 
 @end
 
@@ -249,8 +247,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param format The property list format.
  @param readOptions The property list reading options.
  */
-+ (instancetype)serializerWithFormat:(NSPropertyListFormat)format
-                         readOptions:(NSPropertyListReadOptions)readOptions;
++ (instancetype)serializerWithFormat:(NSPropertyListFormat)format readOptions:(NSPropertyListReadOptions)readOptions;
 
 @end
 
@@ -314,8 +311,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The component response serializers.
  */
-@property(readonly, nonatomic, copy)
-    NSArray<id<AFURLResponseSerialization>> *responseSerializers;
+@property(readonly, nonatomic, copy) NSArray<id<AFURLResponseSerialization>> *responseSerializers;
 
 /**
  Creates and returns a compound serializer comprised of the specified response
@@ -370,10 +366,8 @@ FOUNDATION_EXPORT NSString *const AFURLResponseSerializationErrorDomain;
  operation associated with an error. This key is only present in the
  `AFURLResponseSerializationErrorDomain`.
  */
-FOUNDATION_EXPORT NSString
-    *const AFNetworkingOperationFailingURLResponseErrorKey;
+FOUNDATION_EXPORT NSString *const AFNetworkingOperationFailingURLResponseErrorKey;
 
-FOUNDATION_EXPORT NSString
-    *const AFNetworkingOperationFailingURLResponseDataErrorKey;
+FOUNDATION_EXPORT NSString *const AFNetworkingOperationFailingURLResponseDataErrorKey;
 
 NS_ASSUME_NONNULL_END
